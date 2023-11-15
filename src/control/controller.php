@@ -18,7 +18,12 @@ class Controller
     );
     
     public function showInformation($id) {
-        if (array_key_exists($id, $this->animalsTab)) {
+        if ($id === null) 
+        {
+            $this->view->prepareHomePage();
+        }
+        elseif (array_key_exists($id, $this->animalsTab)) 
+        {
             $animal = $this->animalsTab[$id];
             $this->view->prepareAnimalPage($animal[0], $animal[1]);
         } else {

@@ -23,15 +23,21 @@ class View
         $this->content = "<p>Ceci est une page de test.</p>";
     }
 
-    public function prepareAnimalPage($name, $species) {
+    public function prepareAnimalPage($name, $species) 
+    {
         $this->title = "Page sur " . $name;
         $this->content = "<p>" . $name . " est un animal de l'espèce " . $species . ".</p>";
     }
 
-    public function prepareUnknownAnimalPage() {
+    public function prepareUnknownAnimalPage() 
+    {
         $this->title = "Erreur";
         $this->content = "<p>Animal inconnu</p>";
-}
-
+    }
+    public function prepareHomePage() 
+    {
+        $this->title = "Accueil";
+        $this->content = "<p>Bienvenue sur notre site des animaux !</p>";
+    }
 }
 ?>
