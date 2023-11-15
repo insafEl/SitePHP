@@ -27,5 +27,11 @@ class View
         $this->title = "Page sur " . $name;
         $this->content = "<p>" . $name . " est un animal de l'espèce " . $species . ".</p>";
     }
+
+    public function prepareUnknownAnimalPage() {
+        $this->title = "Erreur";
+        $this->content = "<p>Animal inconnu</p>";
+}
+
 }
 ?>
