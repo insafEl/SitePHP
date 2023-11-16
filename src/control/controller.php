@@ -34,5 +34,11 @@ class Controller
             $this->view->prepareUnknownAnimalPage();
         }
     }
+
+    public function showList() 
+    {
+        $this->view->prepareListPage($this->animalsTab);
+    }
+
 }
 ?>

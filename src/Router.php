@@ -12,11 +12,16 @@ class Router
         $view = new View();
         $view->prepareAnimalPage("Médor", "chien");
         $view->render();*/
-
+        
         $view = new View();
         $controller = new Controller($view);
         $id = isset($_GET['id']) ? $_GET['id'] : null;
-        $controller->showInformation($id);
+        $liste = isset($_GET['liste']);
+        if ($liste) {
+            $controller->showList();
+        } else {
+            $controller->showInformation($id);
+        }
         $view->render();
     }
 }

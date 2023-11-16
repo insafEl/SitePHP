@@ -40,5 +40,17 @@ class View
         $this->title = "Accueil";
         $this->content = "<p>Bienvenue sur notre site des animaux !</p>";
     }
+
+    public function prepareListPage($animalList) 
+    {
+        $this->title = "Liste des Animaux";
+        $this->content = "<ul>";
+
+        foreach ($animalList as $id => $animal) {
+            $this->content .= "<li><a href='site.php?id={$id}'>{$animal->getName()}</a></li>";
+        }
+
+        $this->content .= "</ul>";
+    }
 }
 ?>
