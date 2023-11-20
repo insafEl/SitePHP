@@ -2,19 +2,22 @@
 
 require_once("control/controller.php");
 require_once("view/view.php");
+require_once("model/AnimalStorageSession.php");
+
 class Router 
 {
-    public function main() 
+
+    public function getAnimalURL($id) 
     {
-        /*$view = new View();
-        $view->prepareTestPage();
-        $view->render();    
-        $view = new View();
-        $view->prepareAnimalPage("Médor", "chien");
-        $view->render();*/
-        
-        $view = new View();
-        $controller = new Controller($view);
+        return "site.php?id=" . $id;
+    }
+
+    public function main($animalStorage) 
+    {
+        $router = new Router();
+        $view = new View($router);
+        //$animalStorage = new AnimalStorageStub(); 
+        $controller = new Controller($view, $animalStorage);
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         $liste = isset($_GET['liste']);
         if ($liste) {
@@ -22,6 +25,7 @@ class Router
         } else {
             $controller->showInformation($id);
         }
+        $view->prepareDebugPage($animalStorage);
         $view->render();
     }
 }

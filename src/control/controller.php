@@ -1,44 +1,36 @@
 <?php
+
 require_once("view/view.php");
 require_once("model/animal.php");
+require_once("model/AnimalStorage.php");
 
 class Controller 
 {
     private $view;
+    private $animalStorage; 
 
-    public function __construct($view) 
+    public function __construct($view, AnimalStorage $animalStorage) 
     {
         $this->view = $view;
-        $this->initializeAnimalsTab();
+        $this->animalStorage = $animalStorage; 
     }
-
-    private function initializeAnimalsTab() 
+    public function showInformation($id) 
     {
-        $this->animalsTab = array(
-            'medor' => new Animal('Médor', 'chien', 5),
-            'felix' => new Animal('Félix', 'chat', 3),
-            'denver' => new Animal('Denver', 'dinosaure', 100),
-        );
-    }
-    
-    public function showInformation($id) {
         if ($id === null) 
         {
             $this->view->prepareHomePage();
         }
-        elseif (array_key_exists($id, $this->animalsTab)) 
+        elseif ($animal = $this->animalStorage->read($id)) 
         {
-            $animal = $this->animalsTab[$id];
             $this->view->prepareAnimalPage($animal);
         } else {
             $this->view->prepareUnknownAnimalPage();
         }
     }
-
     public function showList() 
     {
-        $this->view->prepareListPage($this->animalsTab);
+        $animalList = $this->animalStorage->readAll();
+        $this->view->prepareListPage($animalList);
     }
-
 }
 ?>
