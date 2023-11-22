@@ -20,7 +20,11 @@ class Router
     {
         return "Site.php?action=sauverNouveau";
     }
-
+    public function POSTredirect($url, $feedback) 
+    {
+        header("Location: " . $url, true, 303);
+        exit();
+    }
     public function main($animalStorage) 
     {
         $router = new Router();
@@ -34,7 +38,8 @@ class Router
             $controller->showInformation($id);
         }
         $action = isset($_GET['action']) ? $_GET['action'] : '';
-        switch ($action) {
+        switch ($action) 
+        {
             case 'nouveau':
                 $animalBuilder = new AnimalBuilder([]);
                 $view->prepareAnimalCreationPage($animalBuilder);
@@ -43,7 +48,7 @@ class Router
                 $controller->saveNewAnimal($_POST);
                 break;
             default:
-            }
+        }
         $view->render();
     }
 }

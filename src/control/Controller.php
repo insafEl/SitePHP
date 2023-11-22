@@ -39,9 +39,10 @@ class Controller
         if ($animalBuilder->isValid()) 
         {
             $animal = $animalBuilder->createAnimal();
-            $this->animalStorage->create($animal);
-            $this->view->prepareAnimalPage($animal);
-        } else {
+            $id = $this->animalStorage->create($animal);
+            $this->view->displayAnimalCreationSuccess($id);
+        } else 
+        {
             $this->view->prepareAnimalCreationPage($animalBuilder);
         }
     }

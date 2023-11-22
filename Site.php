@@ -13,4 +13,5 @@ $animalStorage = new $animalStorageImplementation();
 
 $router = new Router();
 $router->main($animalStorage);
+//session_destroy();
 ?>

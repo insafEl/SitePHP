@@ -25,7 +25,7 @@ class AnimalBuilder
 
     public function createAnimal() 
     {
-        return new Animal($this->data[self::NAME_REF], $this->data[self::SPECIES_REF], $this->data[self::AGE_REF]);
+        return new Animal(htmlspecialchars($this->data[self::NAME_REF]), htmlspecialchars($this->data[self::SPECIES_REF]), htmlspecialchars($this->data[self::AGE_REF]));
     }
 
     public function isValid() 
