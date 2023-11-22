@@ -79,13 +79,19 @@ class View
         $this->title = 'Debug';
         $this->content = '<pre>' . htmlspecialchars(var_export($variable, true)) . '</pre>';
     }
-    public function prepareAnimalCreationPage() 
+    public function prepareAnimalCreationPage($data = null, $error = null) 
     {
         $this->title = "Création d'un nouvel animal";
-        $this->content = "<form action='" . $this->router->getAnimalSaveURL() . "' method='POST'>
-                              <label>Nom: <input type='text' name='name'></label><br>
-                              <label>Espèce: <input type='text' name='species'></label><br>
-                              <label>Âge: <input type='number' name='age'></label><br>
+        $name = $data['name'] ?? '';
+        $species = $data['species'] ?? '';
+        $age = $data['age'] ?? '';
+
+        $errorMessage = $error ? "<p style='color: red;'>$error</p>" : '';
+
+        $this->content = $errorMessage . "<form action='" . $this->router->getAnimalSaveURL() . "' method='POST'>
+                              <label>Nom: <input type='text' name='name' value='{$name}'></label><br>
+                              <label>Espèce: <input type='text' name='species' value='{$species}'></label><br>
+                              <label>Âge: <input type='number' name='age' value='{$age}'></label><br>
                               <input type='submit' value='Créer'>
                           </form>";
     }

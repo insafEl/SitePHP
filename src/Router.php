@@ -11,11 +11,12 @@ class Router
     {
         return "Site.php?id=" . $id;
     }
-    public function getAnimalCreationURL() {
+    public function getAnimalCreationURL() 
+    {
         return "Site.php?action=nouveau";
     }
-
-    public function getAnimalSaveURL() {
+    public function getAnimalSaveURL() 
+    {
         return "Site.php?action=sauverNouveau";
     }
 
