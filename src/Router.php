@@ -3,6 +3,7 @@
 require_once("control/Controller.php");
 require_once("view/View.php");
 require_once("model/AnimalStorageSession.php");
+require_once("model/AnimalBuilder.php");
 
 class Router 
 {
@@ -35,7 +36,8 @@ class Router
         $action = isset($_GET['action']) ? $_GET['action'] : '';
         switch ($action) {
             case 'nouveau':
-                $view->prepareAnimalCreationPage();
+                $animalBuilder = new AnimalBuilder([]);
+                $view->prepareAnimalCreationPage($animalBuilder);
                 break;
             case 'sauverNouveau':
                 $controller->saveNewAnimal($_POST);

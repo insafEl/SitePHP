@@ -79,21 +79,24 @@ class View
         $this->title = 'Debug';
         $this->content = '<pre>' . htmlspecialchars(var_export($variable, true)) . '</pre>';
     }
-    public function prepareAnimalCreationPage($data = null, $error = null) 
+    public function prepareAnimalCreationPage(AnimalBuilder $animalBuilder) 
     {
         $this->title = "Création d'un nouvel animal";
-        $name = $data['name'] ?? '';
-        $species = $data['species'] ?? '';
-        $age = $data['age'] ?? '';
+        $data = $animalBuilder->getData();
+        $error = $animalBuilder->getError();
+        
+        $name = $data[AnimalBuilder::NAME_REF] ?? '';
+        $species = $data[AnimalBuilder::SPECIES_REF] ?? '';
+        $age = $data[AnimalBuilder::AGE_REF] ?? '';
 
         $errorMessage = $error ? "<p style='color: red;'>$error</p>" : '';
 
         $this->content = $errorMessage . "<form action='" . $this->router->getAnimalSaveURL() . "' method='POST'>
-                              <label>Nom: <input type='text' name='name' value='{$name}'></label><br>
-                              <label>Espèce: <input type='text' name='species' value='{$species}'></label><br>
-                              <label>Âge: <input type='number' name='age' value='{$age}'></label><br>
-                              <input type='submit' value='Créer'>
-                          </form>";
+            <label>Nom: <input type='text' name='" . AnimalBuilder::NAME_REF . "' value='" . htmlspecialchars($name) . "'></label><br>
+            <label>Espèce: <input type='text' name='" . AnimalBuilder::SPECIES_REF . "' value='" . htmlspecialchars($species) . "'></label><br>
+            <label>Âge: <input type='number' name='" . AnimalBuilder::AGE_REF . "' value='" . htmlspecialchars($age) . "'></label><br>
+            <input type='submit' value='Créer'>
+        </form>";
     }
 }
 ?>

@@ -34,17 +34,16 @@ class Controller
     }
     public function saveNewAnimal(array $data) 
     {
-        $error = null;
+        $animalBuilder = new AnimalBuilder($data);
 
-        if (empty($data['name']) || empty($data['species']) || !is_numeric($data['age']) || $data['age'] < 0) 
+        if ($animalBuilder->isValid()) 
         {
-            $error = "Nom, espèce ne doivent pas être vides et l'âge doit être un nombre positif.";
-            $this->view->prepareAnimalCreationPage($data, $error);
-            return;
+            $animal = $animalBuilder->createAnimal();
+            $this->animalStorage->create($animal);
+            $this->view->prepareAnimalPage($animal);
+        } else {
+            $this->view->prepareAnimalCreationPage($animalBuilder);
         }
-        $animal = new Animal(htmlspecialchars($data['name']), htmlspecialchars($data['species']), htmlspecialchars($data['age']));
-        $this->animalStorage->create($animal);
-        $this->view->prepareAnimalPage($animal);
     }
 }
 ?>
