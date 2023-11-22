@@ -1,7 +1,7 @@
 <?php
 
-require_once("control/controller.php");
-require_once("view/view.php");
+require_once("control/Controller.php");
+require_once("view/View.php");
 require_once("model/AnimalStorageSession.php");
 
 class Router 
@@ -9,14 +9,20 @@ class Router
 
     public function getAnimalURL($id) 
     {
-        return "site.php?id=" . $id;
+        return "Site.php?id=" . $id;
+    }
+    public function getAnimalCreationURL() {
+        return "Site.php?action=nouveau";
+    }
+
+    public function getAnimalSaveURL() {
+        return "Site.php?action=sauverNouveau";
     }
 
     public function main($animalStorage) 
     {
         $router = new Router();
         $view = new View($router);
-        //$animalStorage = new AnimalStorageStub(); 
         $controller = new Controller($view, $animalStorage);
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         $liste = isset($_GET['liste']);
@@ -25,7 +31,16 @@ class Router
         } else {
             $controller->showInformation($id);
         }
-        $view->prepareDebugPage($animalStorage);
+        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        switch ($action) {
+            case 'nouveau':
+                $view->prepareAnimalCreationPage();
+                break;
+            case 'sauverNouveau':
+                $controller->saveNewAnimal($_POST);
+                break;
+            default:
+            }
         $view->render();
     }
 }

@@ -6,7 +6,7 @@ require_once("model/AnimalStorageSession.php");
 
 session_start();
 
-$config = include("./config.php");
+$config = include("./Config.php");
 
 $animalStorageImplementation = $config['animalStorageImplementation'];
 $animalStorage = new $animalStorageImplementation();

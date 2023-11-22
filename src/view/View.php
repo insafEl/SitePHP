@@ -15,8 +15,8 @@ class View
     private function initializeMenu()
     {
         $this->menu = [
-            'site.php' => 'Accueil',
-            'site.php?liste' => 'Liste des Animaux',
+            'Site.php' => 'Accueil',
+            'Site.php?liste' => 'Liste des Animaux',
         ];
     }
 
@@ -74,9 +74,20 @@ class View
 
         $this->content .= "</ul>";
     }
-    public function prepareDebugPage($variable) {
+    public function prepareDebugPage($variable) 
+    {
         $this->title = 'Debug';
         $this->content = '<pre>' . htmlspecialchars(var_export($variable, true)) . '</pre>';
+    }
+    public function prepareAnimalCreationPage() 
+    {
+        $this->title = "Création d'un nouvel animal";
+        $this->content = "<form action='" . $this->router->getAnimalSaveURL() . "' method='POST'>
+                              <label>Nom: <input type='text' name='name'></label><br>
+                              <label>Espèce: <input type='text' name='species'></label><br>
+                              <label>Âge: <input type='number' name='age'></label><br>
+                              <input type='submit' value='Créer'>
+                          </form>";
     }
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 
-require_once("view/view.php");
-require_once("model/animal.php");
+require_once("view/View.php");
+require_once("model/Animal.php");
 require_once("model/AnimalStorage.php");
 
 class Controller 
@@ -31,6 +31,12 @@ class Controller
     {
         $animalList = $this->animalStorage->readAll();
         $this->view->prepareListPage($animalList);
+    }
+    public function saveNewAnimal(array $data) 
+    {
+        $animal = new Animal($data['name'], $data['species'], $data['age']);
+        $id = $this->animalStorage->create($animal);
+        $this->view->prepareAnimalPage($animal);    
     }
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 /* Inclusion des dépendances de cette classe */
-require_once("model/animal.php");
+require_once("model/Animal.php");
 require_once("model/AnimalStorage.php");
 require_once("model/AnimalStorageStub.php");
 
