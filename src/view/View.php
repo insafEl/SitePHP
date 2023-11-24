@@ -4,12 +4,14 @@ class View
     public $title;
     public $content;
     private $router;
-    private $menu; // Nouvel attribut pour le menu
+    private $feedback;
+    private $menu; 
 
-    public function __construct($router) 
+    public function __construct($router,$feedback = "") 
     {
         $this->router = $router;
-        $this->initializeMenu(); // Initialiser le menu
+        $this->feedback = $feedback;
+        $this->initializeMenu(); 
     }
 
     private function initializeMenu()
@@ -31,6 +33,7 @@ class View
         echo $this->renderMenu(); 
         echo "    <h1>" . $this->title . "</h1>\n";
         echo $this->content;
+        echo "<div class='feedback'>" . htmlspecialchars($this->feedback) . "</div>";
         echo "</body>\n";
         echo "</html>\n";
     }
@@ -98,6 +101,10 @@ class View
             <input type='submit' value='Créer'>
         </form>";
     }
-    
+    public function displayAnimalCreationSuccess($id) 
+    {
+        $animalURL = $this->router->getAnimalURL($id);
+        $this->router->POSTredirect($animalURL, "Animal créé avec succès");
+    }
 }
 ?>

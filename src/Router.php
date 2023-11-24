@@ -7,6 +7,12 @@ require_once("model/AnimalBuilder.php");
 
 class Router 
 {
+    public function POSTredirect($url, $feedback) 
+    {
+        $_SESSION['feedback'] = $feedback; 
+        header("Location: " . $url, true, 303);
+        exit();
+    }
     public function getAnimalURL($id) 
     {
         return "?id=" . $id;
@@ -22,11 +28,15 @@ class Router
     public function main($animalStorage) 
     {
         $router = new Router();
-        $view = new View($router);
-        $controller = new Controller($view, $animalStorage);
 
         $pathInfo = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
         $pathInfo = ltrim($pathInfo, '/');
+
+        $feedback = isset($_SESSION['feedback']) ? $_SESSION['feedback'] : '';
+        unset($_SESSION['feedback']);
+
+        $view = new View($this, $feedback);
+        $controller = new Controller($view, $animalStorage);
         try
         {
             if(key_exists('id',$_GET))
