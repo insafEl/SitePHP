@@ -98,10 +98,6 @@ class View
             <input type='submit' value='Créer'>
         </form>";
     }
-    public function displayAnimalCreationSuccess($id) 
-    {
-        $animalURL = $this->router->getAnimalURL($id);
-        $this->router->POSTredirect($animalURL, "Animal créé avec succès");
-    }
+    
 }
 ?>

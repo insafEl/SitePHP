@@ -40,7 +40,7 @@ class Controller
         {
             $animal = $animalBuilder->createAnimal();
             $id = $this->animalStorage->create($animal);
-            $this->view->displayAnimalCreationSuccess($id);
+            $this->view->prepareAnimalPage($id);
         } else 
         {
             $this->view->prepareAnimalCreationPage($animalBuilder);
