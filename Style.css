@@ -1,0 +1,114 @@
+/* Basic reset to remove padding, margin, and set box-sizing to border-box */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Main content area styling */
+main {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+}
+
+/* Header styling */
+header {
+    color: #fff;
+    background: #333;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Navigation menu styling */
+nav ul {
+    background: #555;
+    list-style: none;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    display: inline-block;
+}
+
+nav ul a:hover {
+    background: #444;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Form styling */
+form {
+    margin-top: 20px;
+}
+
+form label, form input, form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+form input[type="text"], form input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+}
+
+form button {
+    background: #333;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #555;
+}
+
+/* Content Styling */
+.content {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Feedback message styling */
+.feedback {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    background: #e7f3fe;
+    color: #31708f;
+}
+
+/* Error message styling */
+.error {
+    color: red;
+    font-weight: bold;
+}
+
